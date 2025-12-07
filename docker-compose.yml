@@ -1,0 +1,46 @@
+services:
+  backend:
+    build:
+     context: ./backend
+     dockerfile: Dockerfile
+    container_name: ec_backend
+    depends_on:
+     db:
+      condition: service_started
+    environment:
+     SPRING_PROFILES_ACTIVE: dev
+    networks:
+     - ec_network
+    ports:
+     - "8080:8080"
+  frontend:
+    build:
+     context: ./frontend
+     dockerfile: Dockerfile
+    container_name: ec_frontend
+    ports:
+     - "3000:3000"
+    environment:
+     - NODE_ENV=production
+    depends_on:
+     - backend
+    networks:
+     - ec_network
+  db:
+    image: postgres:16
+    container_name: ec_db
+    environment:
+      POSTGRES_USER: ecuser
+      POSTGRES_PASSWORD: ecpass
+      POSTGRES_DB: ecdb
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    networks:
+      - ec_network
+
+networks:
+  ec_network:
+    driver: bridge
+

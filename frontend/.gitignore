@@ -1,0 +1,60 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+.env.local    # ローカル環境の機密設定ファイルは明示的に除外推奨
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# --- 追加: Backend (Java/Maven) files ---
+# Maven/Gradle build output directory
+/target/
+
+# IDE files (Eclipse, IntelliJ, etc.)
+*.iml
+.idea/
+.classpath
+.project
+.settings/
+
+# Java/Log files
+*.log
+
+# --- 追加: Database temporary files ---
+# 例: 組み込みDBが生成するファイルや一時ファイル (プロジェクトによって変更が必要)
+*.db
